@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} | {% endif %}Blog</title>
+  </head>
+
+  <body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <div class="container">
+
+      <h1>Blog de DWS</h1>
+      <div class='cabezo'>{% include "header.html" with subtitle="Este es el mi blog de DWS" %} </div>
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'logout' %}">Logout</a>
+      <a href="{% url 'signup' %}">Sign up</a>
+
+    </div>
+  </body>
+</html>

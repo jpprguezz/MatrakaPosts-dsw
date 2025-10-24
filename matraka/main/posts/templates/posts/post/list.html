@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltimateBlog</title>
+</head>
+<body>
+    
+    {% extends "base.html" %}
+    <ul>
+
+{% block content %}
+    <div class='cabezo'>{% include "header.html" with subtitle="Don't miss the cutting edge info!" %} </div>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'signup' %}">Sign up</a>
+
+
+    {% for post in posts %}
+    {% comment "opcional" %}
+    <p>hola</p>
+    {% endcomment %}
+        <h3>{{ post }}</h3>
+        <p>Read more <a href="{% url 'posts:post-detail' post.id %}">here</a></p>
+        <p>{% lorem 1 b random%}</p>
+        <p>{% now 'd-m-Y' %}</p>
+    {% endfor %}
+        
+        <ul>
+    {% for post in posts %}
+        <li style="background-color: {% cycle 'LightBlue' 'LightPink' %}">
+            {{ post }}
+        </li>
+    {% endfor %}
+                {% for post in posts %}
+        <li>{{ post }}</li>
+    {% empty %}
+        <p>No posts so far!</p>
+    {% endfor %}
+
+
+</ul>
+{% endblock %}
+
+
+
+</ul>
+
+</body>
+</html>
