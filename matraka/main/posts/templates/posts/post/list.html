@@ -6,46 +6,30 @@
     <title>UltimateBlog</title>
 </head>
 <body>
-    
-    {% extends "base.html" %}
-    <ul>
+{% extends "base.html" %}
+   
 
 {% block content %}
-    <div class='cabezo'>{% include "header.html" with subtitle="Don't miss the cutting edge info!" %} </div>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'logout' %}">Logout</a>
-    <a href="{% url 'signup' %}">Sign up</a>
+    
+    <div class='head'>{% include "header.html" with subtitle="Don't miss the cutting edge info!" %} </div>
 
+    <h2>Posts</h2>
+    
+    <div class='post'>
+        {% for post in posts %}
 
-    {% for post in posts %}
-    {% comment "opcional" %}
-    <p>hola</p>
-    {% endcomment %}
-        <h3>{{ post }}</h3>
-        <p>Read more <a href="{% url 'posts:post-detail' post.id %}">here</a></p>
-        <p>{% lorem 1 b random%}</p>
-        <p>{% now 'd-m-Y' %}</p>
-    {% endfor %}
+            <h3>{{ post }}</h3>
+            <p>Read more <a href="{% url 'posts:post-detail' post.slug %}">here</a></p>
+            <p>{% lorem 1 b random%}</p>
+            <p>{% now 'd-m-Y' %}</p>
         
-        <ul>
-    {% for post in posts %}
-        <li style="background-color: {% cycle 'LightBlue' 'LightPink' %}">
-            {{ post }}
-        </li>
-    {% endfor %}
-                {% for post in posts %}
-        <li>{{ post }}</li>
-    {% empty %}
-        <p>No posts so far!</p>
-    {% endfor %}
+        {% empty %}
+            <p>No posts so far!</p>
+        {% endfor %}
+    </div>
 
-
-</ul>
 {% endblock %}
 
-
-
-</ul>
 
 </body>
 </html>
